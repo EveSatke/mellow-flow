@@ -1,23 +1,30 @@
-import Image from "next/image";
-import GenderCard from "@/components/GenderCard";
-import { genderQuestion } from "@/lib/questions";
+import Image from 'next/image';
+import GenderCard from '@/components/GenderCard';
+import { genderQuestion } from '@/lib/questions';
 
 export default function Home() {
-
-
   return (
-    <div className=" flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <header className="flex items-center justify-center py-6">
-          <Image src="/mellow-flow-logo.svg" alt="Mellow Flow logo" width={62} height={36} />
-        </header>
-      <main className="flex flex-col gap-6 flex-1 items-center">
+        <Image
+          src="/mellow-flow-logo.svg"
+          alt="Mellow Flow logo"
+          width={62}
+          height={36}
+        />
+      </header>
+      <main className="flex flex-1 flex-col items-center gap-6">
         <section className="flex flex-col gap-2 text-center">
           <h1 className="text-2xl font-semibold">{genderQuestion.prompt}</h1>
           <p className="text-sm font-normal">{genderQuestion.description}</p>
         </section>
-        <section className="flex gap-3 flex-1 items-center justify-center">
+        <section className="flex flex-1 items-center justify-center gap-3">
           {genderQuestion.options.map((option) => (
-            <GenderCard key={option.id} image={option.image} label={option.label} />
+            <GenderCard
+              key={option.id}
+              image={option.image}
+              label={option.label}
+            />
           ))}
         </section>
       </main>

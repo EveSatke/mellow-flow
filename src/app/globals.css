@@ -15,10 +15,13 @@
   --color-green: #289F67;
   --color-yellow: #FFC633;
   --color-red: #E35244;
+  --color-light-gray: #E4E4E4;
+  --color-button-border: #F1F1F1;
 }
 
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-figtree);
 }
