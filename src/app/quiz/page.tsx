@@ -27,7 +27,7 @@ export default function QuizPage() {
   }
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <header className="flex flex-col px-5 py-6">
         <div className="flex items-center justify-between pb-3">
           <button>
@@ -56,7 +56,7 @@ export default function QuizPage() {
             {question.prompt}
           </h1>
         </section>
-        <section className="flex w-full flex-1 flex-col items-stretch justify-center gap-3 px-5">
+        <section className="flex w-full flex-1 flex-col items-stretch justify-end gap-3 p-5">
           {question.options.map((option) => (
             <AnswerOption
               key={option.id}
@@ -67,6 +67,6 @@ export default function QuizPage() {
           ))}
         </section>
       </main>
-    </>
+    </div>
   );
 }

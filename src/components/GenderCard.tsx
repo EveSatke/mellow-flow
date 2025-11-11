@@ -1,10 +1,27 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-export default function GenderCard({ image, label }: { image: string, label: string }) {
+export default function GenderCard({
+  image,
+  label,
+  onSelect,
+}: {
+  image: string;
+  label: string;
+  onSelect: () => void;
+}) {
   return (
-    <div className="flex flex-col items-center justify-center bg-dark-purple rounded-lg">
-      <Image className="rounded-t-lg border-2 border-dark-purple" src={image} alt={label} width={160} height={140} />
-      <p className="text-white text-lg font-semibold p-5">{label}</p>
+    <div
+      className="bg-dark-purple flex flex-col items-center justify-center rounded-lg"
+      onClick={() => onSelect()}
+    >
+      <Image
+        className="border-dark-purple rounded-t-lg border-2"
+        src={image}
+        alt={label}
+        width={160}
+        height={140}
+      />
+      <p className="p-5 text-lg font-semibold text-white">{label}</p>
     </div>
   );
 }

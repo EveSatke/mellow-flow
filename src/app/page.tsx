@@ -1,8 +1,18 @@
+'use client';
+
 import Image from 'next/image';
 import GenderCard from '@/components/GenderCard';
 import { genderQuestion } from '@/lib/questions';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Home() {
+  const router = useRouter();
+
+  function handleSelect(optionId: string) {
+    router.push(`/quiz?gender=${optionId}`);
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex items-center justify-center py-6">
@@ -24,6 +34,7 @@ export default function Home() {
               key={option.id}
               image={option.image}
               label={option.label}
+              onSelect={() => handleSelect(option.id)}
             />
           ))}
         </section>
