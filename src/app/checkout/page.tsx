@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { resultMetrics, photoSets } from '@/lib/results';
 import ResultBadge from '@/components/ResultBadge';
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const drinkingPatterns = 'Imbalanced';
   const goal = 'Regain control and live alcohol-free';
@@ -127,5 +127,13 @@ export default function CheckoutPage() {
         </section>
       </main>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
