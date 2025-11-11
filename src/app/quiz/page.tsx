@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { quizQuestions } from '@/lib/quiz';
 import AnswerOption from '@/components/AnswerOption';
 import Image from 'next/image';
@@ -9,7 +9,7 @@ import ProgressBar from '@/components/ProgressBar';
 
 type Answers = Record<string, string>;
 
-export default function QuizPage() {
+function QuizContent() {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -94,5 +94,13 @@ export default function QuizPage() {
         </section>
       </main>
     </div>
+  );
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={null}>
+      <QuizContent />
+    </Suspense>
   );
 }
