@@ -4,7 +4,6 @@ import Image from 'next/image';
 import GenderCard from '@/components/GenderCard';
 import { genderQuestion } from '@/lib/questions';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 export default function Home() {
   const router = useRouter();

@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mellow Flow
 
-## Getting Started
+Small Next.js app that walks people through a quiz and shows a personalized alcohol-free plan.
 
-First, run the development server:
+## Decisions & Assumptions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- I leaned on the Next.js file-based router and kept everything in three main pages: landing, quiz, and checkout.
+- Seperate components (cards, progress bar, badges) live in src/components so styling and behavior stay consistent.
+- src/lib holds the quiz questions and result data, keeping content easy to edit without touching UI code.
+- src/types centralizes TypeScript definitions so props stay typed and reusable.
+- Tailwind is configured in globals.css; theme tokens handle the color system and fonts.
+- Gender choice flows through the quiz via useSearchParams, so the checkout page can pick female/male photo sets without extra state.
+- Question and answer IDs stay as strings so downstream references remain legible and easy to track.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies: `npm install`
+2. Start the dev server: `npm run dev`
+3. Build for production: `npm run export`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The static site lands in the out/ folder.
 
-## Learn More
+## Stack
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4 (via globals.css)
+- ESlint & Prettier
