@@ -20,17 +20,34 @@ export default function QuizPage() {
   const question = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / total) * 100;
 
-  const isLast = currentQuestionIndex === total - 1;
-
   function handleAnswerSelect(optionId: string) {
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+
+    const isLast = currentQuestionIndex === total - 1;
+
+    const nextStep = () => {
+      if (isLast) {
+        router.push(`/checkout?${params}`);
+      } else {
+        setCurrentQuestionIndex((prev) => Math.min(prev + 1, total - 1));
+      }
+    };
+    setTimeout(nextStep, 350);
+  }
+
+  function handleBack() {
+    if (currentQuestionIndex === 0) {
+      router.push('/');
+      return;
+    }
+    setCurrentQuestionIndex((prev) => Math.max(prev - 1, 0));
   }
 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex flex-col px-5 py-6">
         <div className="flex items-center justify-between pb-3">
-          <button>
+          <button onClick={handleBack}>
             <Image
               src="/icons/back-arrow.svg"
               alt="Back"
@@ -51,7 +68,7 @@ export default function QuizPage() {
         <ProgressBar progress={progress} />
       </header>
       <main className="flex flex-1 flex-col items-center gap-6">
-        <section className="flex flex-col">
+        <section className="flex flex-col px-5 py-2">
           <h1 className="text-center text-2xl font-semibold">
             {question.prompt}
           </h1>

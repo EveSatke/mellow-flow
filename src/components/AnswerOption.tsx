@@ -17,13 +17,20 @@ export default function AnswerOption({
   onSelect,
   className,
 }: AnswerOptionProps) {
+  const toneStyles = {
+    primary: 'bg-light-purple text-white',
+    positive: 'bg-green text-white',
+    neutral: 'bg-yellow text-slate-900',
+    negative: 'bg-red text-white',
+  } as const;
+
   return (
     <button
       type="button"
       onClick={() => onSelect(option.id)}
       className={clsx(
         'border-button-border flex h-14 w-full items-center justify-start gap-2 rounded-lg border px-3',
-        selected ? 'bg-light-purple' : 'bg-white',
+        selected ? toneStyles[option.tone] : 'bg-white',
         className
       )}
     >
