@@ -4,6 +4,7 @@ import Image from 'next/image';
 import GenderCard from '@/components/GenderCard';
 import { genderQuestion } from '@/lib/questions';
 import { useRouter } from 'next/navigation';
+import { asset } from '@/lib/assets';
 
 export default function Home() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <header className="flex items-center justify-center py-6">
         <Image
-          src="/mellow-flow-logo.svg"
+          src={asset('/mellow-flow-logo.svg')}
           alt="Mellow Flow logo"
           width={62}
           height={36}

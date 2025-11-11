@@ -66,7 +66,7 @@ function QuizContent() {
             />
           </button>
           <Image
-            src="/mellow-flow-logo.svg"
+            src={asset('/mellow-flow-logo.svg')}
             alt="Mellow Flow"
             width={62}
             height={36}
