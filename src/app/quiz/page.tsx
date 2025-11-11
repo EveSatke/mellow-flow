@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { quizQuestions } from '@/lib/quiz';
 import AnswerOption from '@/components/AnswerOption';
 import Image from 'next/image';
@@ -15,10 +15,19 @@ export default function QuizPage() {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [answers, setAnswers] = useState<Answers>({});
+  const nextStepTimeout = useRef<number | null>(null);
 
   const total = quizQuestions.length;
   const question = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / total) * 100;
+
+  useEffect(() => {
+    return () => {
+      if (nextStepTimeout.current) {
+        clearTimeout(nextStepTimeout.current);
+      }
+    };
+  }, []);
 
   function handleAnswerSelect(optionId: string) {
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
@@ -32,7 +41,7 @@ export default function QuizPage() {
         setCurrentQuestionIndex((prev) => Math.min(prev + 1, total - 1));
       }
     };
-    setTimeout(nextStep, 350);
+    nextStepTimeout.current = window.setTimeout(nextStep, 350);
   }
 
   function handleBack() {

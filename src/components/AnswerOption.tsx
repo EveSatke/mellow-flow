@@ -1,21 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import type { QuizOption } from '@/types/quiz';
+import type { AnswerOptionProps } from '@/types/quiz';
 import clsx from 'clsx';
-
-type AnswerOptionProps = {
-  option: QuizOption;
-  selected: boolean;
-  onSelect: (optionId: string) => void;
-  className?: string;
-};
 
 export default function AnswerOption({
   option,
   selected,
   onSelect,
-  className,
 }: AnswerOptionProps) {
   const toneStyles = {
     primary: 'bg-light-purple text-white',
@@ -30,8 +22,7 @@ export default function AnswerOption({
       onClick={() => onSelect(option.id)}
       className={clsx(
         'border-button-border flex h-14 w-full items-center justify-start gap-2 rounded-lg border px-3',
-        selected ? toneStyles[option.tone] : 'bg-white',
-        className
+        selected ? toneStyles[option.tone] : 'bg-white'
       )}
     >
       {option.icon ? (

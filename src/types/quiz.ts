@@ -12,3 +12,9 @@ export type QuizQuestion = {
   prompt: string;
   options: QuizOption[];
 };
+
+export type AnswerOptionProps = {
+  option: QuizOption;
+  selected: boolean;
+  onSelect: (optionId: string) => void;
+};
