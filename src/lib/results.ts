@@ -1,5 +1,13 @@
 import type { ResultMetric } from '@/types/results';
 
+export const photoSets = {
+  female: {
+    before: '/images/female-before.png',
+    after: '/images/female-after.png',
+  },
+  male: { before: '/images/male-before.png', after: '/images/male-after.png' },
+} as const;
+
 export const resultMetrics: ResultMetric[] = [
   {
     id: 'desire',

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { resultMetrics } from '@/lib/results';
+import { resultMetrics, photoSets } from '@/lib/results';
 import ResultBadge from '@/components/ResultBadge';
 
 export default function CheckoutPage() {
@@ -17,17 +17,9 @@ export default function CheckoutPage() {
   }, [timeLeft]);
 
   const params = useSearchParams();
-  const gender = params.get('gender');
-  const photoSets = {
-    female: {
-      before: '/images/female-before.png',
-      after: '/images/female-after.png',
-    },
-    male: {
-      before: '/images/male-before.png',
-      after: '/images/male-after.png',
-    },
-  };
+  const gender = params.get('gender') ?? 'female';
+  const photos =
+    photoSets[gender as keyof typeof photoSets] ?? photoSets.female;
 
   useEffect(() => {
     const interval = setInterval(
@@ -94,7 +86,7 @@ export default function CheckoutPage() {
           <div className="relative">
             <Image
               className="relative z-0 h-full w-full rounded-l-lg object-cover"
-              src={photoSets[gender as keyof typeof photoSets].before}
+              src={photos.before}
               alt="Before"
               width={300}
               height={300}
@@ -107,7 +99,7 @@ export default function CheckoutPage() {
           <div className="relative">
             <Image
               className="relative z-0 h-full w-full rounded-r-lg object-cover"
-              src={photoSets[gender as keyof typeof photoSets].after}
+              src={photos.after}
               alt="After"
               width={300}
               height={300}
