@@ -1,17 +1,21 @@
 import type { ResultMetric } from '@/types/results';
+import { asset } from '@/lib/assets';
 
 export const photoSets = {
   female: {
-    before: '/images/female-before.png',
-    after: '/images/female-after.png',
+    before: asset('/images/female-before.png'),
+    after: asset('/images/female-after.png'),
   },
-  male: { before: '/images/male-before.png', after: '/images/male-after.png' },
+  male: {
+    before: asset('/images/male-before.png'),
+    after: asset('/images/male-after.png'),
+  },
 } as const;
 
 export const resultMetrics: ResultMetric[] = [
   {
     id: 'desire',
-    icon: '/icons/light-bulb.svg',
+    icon: asset('/icons/light-bulb.svg'),
     tag: 'Very strong',
     title: 'Desire to change',
     value: 92,
@@ -19,7 +23,7 @@ export const resultMetrics: ResultMetric[] = [
   },
   {
     id: 'cravings',
-    icon: '/icons/cravings.svg',
+    icon: asset('/icons/cravings.svg'),
     tag: 'Too high',
     title: 'Cravings',
     value: 84,
@@ -27,7 +31,7 @@ export const resultMetrics: ResultMetric[] = [
   },
   {
     id: 'blocks',
-    icon: '/icons/block.svg',
+    icon: asset('/icons/block.svg'),
     tag: 'Too high',
     title: 'Mental blocks',
     value: 74,
@@ -35,7 +39,7 @@ export const resultMetrics: ResultMetric[] = [
   },
   {
     id: 'stress',
-    icon: '/icons/bolts.svg',
+    icon: asset('/icons/bolts.svg'),
     tag: 'Moderately high',
     title: 'Stress',
     value: 52,

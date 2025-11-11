@@ -6,6 +6,7 @@ import { quizQuestions } from '@/lib/quiz';
 import AnswerOption from '@/components/AnswerOption';
 import Image from 'next/image';
 import ProgressBar from '@/components/ProgressBar';
+import { asset } from '@/lib/assets';
 
 type Answers = Record<string, string>;
 
@@ -58,7 +59,7 @@ function QuizContent() {
         <div className="flex items-center justify-between pb-3">
           <button onClick={handleBack}>
             <Image
-              src="/icons/back-arrow.svg"
+              src={asset('/icons/back-arrow.svg')}
               alt="Back"
               width={24}
               height={24}

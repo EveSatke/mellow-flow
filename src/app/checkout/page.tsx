@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { resultMetrics, photoSets } from '@/lib/results';
 import ResultBadge from '@/components/ResultBadge';
+import { asset } from '@/lib/assets';
 
 function CheckoutContent() {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
@@ -39,7 +40,7 @@ function CheckoutContent() {
       <header className="bg-yellow flex flex-col px-5 py-6">
         <div className="flex items-center justify-between">
           <Image
-            src="/mellow-flow-logo.svg"
+            src={asset('/mellow-flow-logo.svg')}
             alt="Mellow Flow"
             width={62}
             height={36}
@@ -59,7 +60,7 @@ function CheckoutContent() {
         <section className="flex">
           <div className="border-light-purple flex w-1/2 items-start gap-2 border-r pr-4">
             <Image
-              src="/icons/brain.svg"
+              src={asset('/icons/brain.svg')}
               alt="Drinking patterns"
               width={32}
               height={32}
@@ -71,7 +72,7 @@ function CheckoutContent() {
           </div>
           <div className="flex w-1/2 items-start gap-2 pl-4">
             <Image
-              src="/icons/goal.svg"
+              src={asset('/icons/goal.svg')}
               alt="Drinking patterns"
               width={32}
               height={32}
@@ -111,7 +112,7 @@ function CheckoutContent() {
           <div className="pointer-events-none absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1">
             <span className="inline-flex h-12 w-12 items-center justify-center">
               <Image
-                src="/icons/image-arrows.svg"
+                src={asset('/icons/image-arrows.svg')}
                 alt="Arrow right"
                 width={55}
                 height={60}
