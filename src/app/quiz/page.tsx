@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { quizQuestions } from '@/lib/quiz';
 import AnswerOption from '@/components/AnswerOption';
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import { asset } from '@/lib/assets';
 
 type Answers = Record<string, string>;
 
-function QuizContent() {
+export default function QuizPage() {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -33,16 +33,13 @@ function QuizContent() {
   function handleAnswerSelect(optionId: string) {
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
 
-    const isLast = currentQuestionIndex === total - 1;
-
-    const nextStep = () => {
-      if (isLast) {
+    setTimeout(() => {
+      if (currentQuestionIndex === total - 1) {
         router.push(`/checkout?${params}`);
       } else {
-        setCurrentQuestionIndex((prev) => Math.min(prev + 1, total - 1));
+        setCurrentQuestionIndex((prev) => prev + 1);
       }
-    };
-    nextStepTimeout.current = window.setTimeout(nextStep, 350);
+    }, 350);
   }
 
   function handleBack() {
@@ -95,13 +92,5 @@ function QuizContent() {
         </section>
       </main>
     </div>
-  );
-}
-
-export default function QuizPage() {
-  return (
-    <Suspense fallback={null}>
-      <QuizContent />
-    </Suspense>
   );
 }

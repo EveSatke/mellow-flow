@@ -2,20 +2,18 @@
 
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { resultMetrics, photoSets } from '@/lib/results';
 import ResultBadge from '@/components/ResultBadge';
 import { asset } from '@/lib/assets';
 
-function CheckoutContent() {
+export default function CheckoutPage() {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const drinkingPatterns = 'Imbalanced';
   const goal = 'Regain control and live alcohol-free';
-  const formattedTime = useMemo(() => {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }, [timeLeft]);
+  const formattedTime = `${Math.floor(timeLeft / 60)
+    .toString()
+    .padStart(2, '0')}:${(timeLeft % 60).toString().padStart(2, '0')}`;
 
   const params = useSearchParams();
   const gender = params.get('gender') ?? 'female';
@@ -109,7 +107,7 @@ function CheckoutContent() {
               After
             </span>
           </div>
-          <div className="pointer-events-none absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1">
+          <div className="absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1">
             <span className="inline-flex h-12 w-12 items-center justify-center">
               <Image
                 src={asset('/icons/image-arrows.svg')}
@@ -128,13 +126,5 @@ function CheckoutContent() {
         </section>
       </main>
     </div>
-  );
-}
-
-export default function CheckoutPage() {
-  return (
-    <Suspense fallback={null}>
-      <CheckoutContent />
-    </Suspense>
   );
 }
