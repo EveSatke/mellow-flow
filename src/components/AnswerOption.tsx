@@ -27,7 +27,7 @@ export default function AnswerOption({
     >
       {option.icon ? (
         <Image
-          className={clsx(selected ? 'brightness-0 invert filter' : '')}
+          className={clsx(selected && 'brightness-0 invert filter')}
           src={option.icon}
           alt={option.label}
           width={24}

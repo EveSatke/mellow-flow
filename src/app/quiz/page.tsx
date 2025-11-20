@@ -23,9 +23,10 @@ export default function QuizPage() {
   const progress = ((currentQuestionIndex + 1) / total) * 100;
 
   useEffect(() => {
+    const timeoutId = nextStepTimeout.current;
     return () => {
-      if (nextStepTimeout.current) {
-        clearTimeout(nextStepTimeout.current);
+      if (timeoutId !== null && timeoutId !== undefined) {
+        clearTimeout(timeoutId);
       }
     };
   }, []);
@@ -33,13 +34,14 @@ export default function QuizPage() {
   function handleAnswerSelect(optionId: string) {
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
 
-    setTimeout(() => {
+    nextStepTimeout.current = window.setTimeout(() => {
       if (currentQuestionIndex === total - 1) {
         router.push(`/checkout?${params}`);
       } else {
         setCurrentQuestionIndex((prev) => prev + 1);
       }
-    }, 350);
+      nextStepTimeout.current = null;
+    }, 200);
   }
 
   function handleBack() {
